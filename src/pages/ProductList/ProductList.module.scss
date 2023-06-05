@@ -1,0 +1,15 @@
+.productList {
+    flex: 4;
+    padding-right: 18px;
+}
+
+.content{
+    width: 80%;
+    Table{
+       width: -webkit-fill-available;
+       margin-top: 20px;
+      tbody > tr> th{
+           font-weight: normal;
+       }
+    }
+}

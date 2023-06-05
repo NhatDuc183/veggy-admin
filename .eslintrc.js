@@ -17,13 +17,20 @@ module.exports = {
     'react-app/jest',
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'plugin:react/jsx-runtime',
   ],
   plugins: ['react', 'react-hooks'],
   rules: {
+    'react/prop-types': 'off',
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
+    'react/no-unescaped-entities': 0,
     'prettier/prettier': [
       'error',
       {
         endOfLine: 'auto',
+        'react/react-in-jsx-scope': 'off',
+        // allow jsx syntax in js files (for next.js project)
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], //should add ".ts" if typescript project
       },
     ],
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs

@@ -1,31 +1,9 @@
-import {
-  FORGOT_PASSWORD,
-  GET_USER,
-  LOGIN,
-  LOGOUT,
-  RESET_MESSAGE,
-  SIGNUP,
-  UPDATE_INFO_USER,
-  UPDATE_PASSWORD,
-  LOGIN_GOOGLE,
-} from './constants'
+import { FORGOT_PASSWORD, LOGIN, LOGOUT, RESET_MESSAGE, SIGNUP, UPDATE_PASSWORD } from './constants'
 
 export function login(email, password) {
   return {
     type: LOGIN,
     payload: { email, password },
-  }
-}
-
-export function login_google(email, name) {
-  return {
-    type: LOGIN_GOOGLE,
-    payload: { email, name },
-  }
-}
-export function getUserInfo() {
-  return {
-    type: GET_USER,
   }
 }
 
@@ -55,12 +33,6 @@ export function forgotPassword(email) {
   }
 }
 
-export function updateInfoUser(id, name, gender, phone, birthday, introduce, address) {
-  return {
-    type: UPDATE_INFO_USER,
-    payload: { id, name, gender, phone, birthday, introduce, address },
-  }
-}
 export function logout() {
   return {
     type: LOGOUT,

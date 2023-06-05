@@ -1,20 +1,15 @@
 import {
-  SIGNUP,
+  FORGOT_PASSWORD,
+  FORGOT_PASSWORD_FAIL,
+  FORGOT_PASSWORD_SUCCESS,
   LOADING,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
-  LOGIN,
   LOGOUT,
   RESET_MESSAGE,
-  SIGNUP_SUCCESS,
   SIGNUP_ERROR,
+  SIGNUP_SUCCESS,
   UPDATE_PASSWORD,
-  FORGOT_PASSWORD,
-  FORGOT_PASSWORD_SUCCESS,
-  FORGOT_PASSWORD_FAIL,
-  UPDATE_INFO_USER,
-  UPDATE_INFO_USER_FAIL,
-  UPDATE_INFO_USER_SUCCESS,
 } from './constants'
 
 const initialState = {
@@ -35,6 +30,7 @@ function authReducer(state = initialState, action) {
       return { ...state, loading: false, user: null, error: action.payload.error, message: null }
     case LOGOUT:
       localStorage.removeItem('token')
+      window.location.href = '/'
       return { ...state, loading: false, user: null }
     case SIGNUP_SUCCESS:
       return { ...state, loading: false, message: action.payload.message, error: null }
@@ -50,12 +46,6 @@ function authReducer(state = initialState, action) {
       return { ...state, loading: false, message: action.payload.message, error: null }
     case FORGOT_PASSWORD_FAIL:
       return { ...state, loading: false, error: action.payload.error, message: null }
-    case UPDATE_INFO_USER:
-      return { ...state, loading: false, user: action.payload }
-    case UPDATE_INFO_USER_FAIL:
-      return { ...state, loading: false, message: action.payload.message }
-    case UPDATE_INFO_USER_SUCCESS:
-      return { ...state, loading: false, message: action.payload.message }
     default:
       return state
   }

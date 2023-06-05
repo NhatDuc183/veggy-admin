@@ -1,17 +1,8 @@
-import api from 'src/utils/axios'
-import instance from 'src/utils/axios'
+import api from 'src/utils/httpRequest'
 
 export const loginService = async (email, password) =>
-  await instance
-    .post('/v1/auths/login', { email, password })
-    .then((res) => {
-      return res.data
-    })
-    .catch((e) => e.response?.data)
-
-export const loginGoogleService = async (email, name) =>
-  await instance
-    .post('/v1/auths/login-gg', { email, name })
+  await api
+    .post('veggy-service/v1/auths/login', { email, password })
     .then((res) => {
       return res.data
     })
@@ -19,7 +10,7 @@ export const loginGoogleService = async (email, name) =>
 
 export const signupService = async (data) =>
   await api
-    .post('/v1/auths/register', data)
+    .post('veggy-service/v1/auths/register', data)
     .then((res) => {
       return res.data
     })
@@ -27,7 +18,7 @@ export const signupService = async (data) =>
 
 export const getUserService = async () =>
   await api
-    .get('/v1/auths/user')
+    .get('veggy-service/v1/auths/user')
     .then((res) => {
       return res.data
     })
@@ -35,7 +26,7 @@ export const getUserService = async () =>
 
 export const updatePasswordService = async (data) =>
   await api
-    .post('/v1/auths/forgot-password')
+    .post('veggy-service/v1/auths/forgot-password')
     .then((res) => {
       return res.data
     })
@@ -43,7 +34,7 @@ export const updatePasswordService = async (data) =>
 
 export const forgotPasswordService = async (data) =>
   await api
-    .get('/v1/auths/forgot-password')
+    .get('veggy-service/v1/auths/forgot-password')
     .then((res) => {
       return res.data
     })
