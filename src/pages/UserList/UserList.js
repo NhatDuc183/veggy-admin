@@ -74,121 +74,6 @@ function UserList() {
     >
       {!loading ? (
         <div className={cx('content')}>
-          {/* <Modal
-            id="edit-customer"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-            className={cx('modal modal-lg')}
-            show={show}
-            onHide={handleClose}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Chỉnh sửa thông tin</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-                  <ImageUploading
-                    multiple
-                    value={images}
-                    onChange={onChange}
-                    maxNumber={maxNumber}
-                    dataURLKey="data_url"
-                  >
-                    {({
-                      imageList,
-                      onImageUpload,
-                      onImageRemoveAll,
-                      onImageUpdate,
-                      onImageRemove,
-                      isDragging,
-                      dragProps,
-                    }) => (
-                      // write your building UI
-                      <div className={cx('upload__image-wrapper')}>
-                        <button
-                          style={isDragging ? { color: 'red' } : undefined}
-                          onClick={onImageUpload}
-                          {...dragProps}
-                        >
-                          Thêm ảnh
-                        </button>
-                        &nbsp;
-                        {imageList.map((image, index) => (
-                          <div key={index} className={cx('image-item')}>
-                            <img src={image['data_url']} alt="" width="100" />
-                            <div className={cx('image-item__btn-wrapper')}>
-                              <button onClick={() => onImageUpdate(index)}>Thay đổi</button>
-                              <button onClick={() => onImageRemove(index)}>Xóa</button>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </ImageUploading>
-                </Form.Group>
-
-                <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-                  <Form.Label>Tên </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Tên khách hàng"
-                    autoFocus
-                    value="Trần Nhật Đức"
-                  ></Form.Control>
-                </Form.Group>
-                <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-                  <Form.Label>Ngày sinh </Form.Label>
-                  <Form.Control type="text" placeholder="Ngày sinh" autoFocus value="18/03/2000" />
-                </Form.Group>
-                <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-                  <Form.Label>Giới tính</Form.Label>
-                  <CFormSelect aria-label="Chọn danh mục">
-                    <option disabled>Chọn giới tính</option>
-                    <option value="1">Nam</option>
-                    <option value="2">Nữ</option>
-                  </CFormSelect>
-                </Form.Group>
-                <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Email"
-                    autoFocus
-                    value="trannhatduc@gmail.com"
-                  />
-                </Form.Group>
-                <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-                  <Form.Label>Số điện thoại </Form.Label>
-                  <Form.Control
-                    type="tel"
-                    placeholder="Số điện thoại"
-                    autoFocus
-                    value="0358810333"
-                  />
-                </Form.Group>
-                <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-                  <Form.Label>Địa chỉ</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Địa chỉ"
-                    autoFocus
-                    value="205 Phan Văn Hân, P17, QBT, TPHCM"
-                  />
-                </Form.Group>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Hủy
-              </Button>
-              <Button variant="primary" onClick={handleClose}>
-                Lưu lại
-              </Button>
-            </Modal.Footer>
-          </Modal> */}
           <div className={cx('table-content')}>
             <Table>
               <thead>
@@ -211,7 +96,7 @@ function UserList() {
                     <th>{user.email} </th>
                     <th>{user.phone}</th>
                     <th>
-                      <Button to="/user" className={cx('text-forgot')}>
+                      <Button to="/user/${auth.user.id}" className={cx('text-forgot')}>
                         Chỉnh sửa
                       </Button>
 

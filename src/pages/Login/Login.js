@@ -29,7 +29,6 @@ function Login() {
 
   const handleLogin = () => {
     dispatch(login(email, password))
-    navigate('/users')
   }
 
   return (

@@ -11,23 +11,17 @@ import {
 import className from 'classnames/bind'
 import { memo, useEffect, useState } from 'react'
 import LoadingOverlay from 'react-loading-overlay-ts'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import WidgetLg from 'src/components/WidgetLg'
 import * as services from 'src/services/services'
 import { handleDate, handleGender, handleLevel } from 'src/utils/commonFunc'
 import styles from './User.module.scss'
 import Form from 'react-bootstrap/Form'
 import { CImage, CFormSelect } from '@coreui/react'
+import Button from 'src/components/Button/Button'
+import RootNavigator from 'src/utils/navigate'
 
 const cx = className.bind(styles)
-
-const options = [
-  { label: 'active', value: true, color: '#77dd77' },
-  { label: 'inactive', value: false, color: '#ff6961' },
-]
-
-const widgetbillsCol = ['Khách hàng', 'Ngày giao dịch', 'Số tiền', 'Trạng thái']
-const widgetCourseCol = ['Tiêu đề', 'Học phí', 'Trạng thái', 'Chi tiết']
 
 export default memo(function User({ userListData = [], billsListData = [] }) {
   const [user, setUser] = useState({})
@@ -35,6 +29,12 @@ export default memo(function User({ userListData = [], billsListData = [] }) {
   const [bills, setBills] = useState([])
   const [courses, setCourses] = useState([])
   const { id } = useParams()
+  const navigate = useNavigate()
+  RootNavigator.setNavigate(navigate)
+
+  const handleClose = () => {
+    navigate('/users')
+  }
 
   // useEffect(() => {
   //   const fetchApiCourses = async () => {
@@ -80,7 +80,6 @@ export default memo(function User({ userListData = [], billsListData = [] }) {
   // }, [id])
 
   return (
-    <div>jfdhf</div>
     // <LoadingOverlay
     //   active={loading}
     //   spinner
@@ -245,46 +244,52 @@ export default memo(function User({ userListData = [], billsListData = [] }) {
     //     <></>
     //   )}
     // </div>
-    // <Form>
-    //   <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-    //     <Form.Label>Tên </Form.Label>
-    //     <Form.Control
-    //       type="text"
-    //       placeholder="Tên khách hàng"
-    //       autoFocus
-    //       value="Trần Nhật Đức"
-    //     ></Form.Control>
-    //   </Form.Group>
-    //   <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-    //     <Form.Label>Ngày sinh </Form.Label>
-    //     <Form.Control type="text" placeholder="Ngày sinh" autoFocus value="18/03/2000" />
-    //   </Form.Group>
-    //   <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-    //     <Form.Label>Giới tính</Form.Label>
-    //     <CFormSelect aria-label="Chọn danh mục">
-    //       <option disabled>Chọn giới tính</option>
-    //       <option value="1">Nam</option>
-    //       <option value="2">Nữ</option>
-    //     </CFormSelect>
-    //   </Form.Group>
-    //   <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-    //     <Form.Label>Email</Form.Label>
-    //     <Form.Control type="email" placeholder="Email" autoFocus value="trannhatduc@gmail.com" />
-    //   </Form.Group>
-    //   <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-    //     <Form.Label>Số điện thoại </Form.Label>
-    //     <Form.Control type="tel" placeholder="Số điện thoại" autoFocus value="0358810333" />
-    //   </Form.Group>
-    //   <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
-    //     <Form.Label>Địa chỉ</Form.Label>
-    //     <Form.Control
-    //       type="text"
-    //       placeholder="Địa chỉ"
-    //       autoFocus
-    //       value="205 Phan Văn Hân, P17, QBT, TPHCM"
-    //     />
-    //   </Form.Group>
-    // </Form>
+    <Form>
+      <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
+        <Form.Label>Tên </Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Tên khách hàng"
+          autoFocus
+          value="Trần Nhật Đức"
+        ></Form.Control>
+      </Form.Group>
+      <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
+        <Form.Label>Ngày sinh </Form.Label>
+        <Form.Control type="text" placeholder="Ngày sinh" autoFocus value="18/03/2000" />
+      </Form.Group>
+      <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
+        <Form.Label>Giới tính</Form.Label>
+        <CFormSelect aria-label="Chọn danh mục">
+          <option disabled>Chọn giới tính</option>
+          <option value="1">Nam</option>
+          <option value="2">Nữ</option>
+        </CFormSelect>
+      </Form.Group>
+      <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
+        <Form.Label>Email</Form.Label>
+        <Form.Control type="email" placeholder="Email" autoFocus value="trannhatduc@gmail.com" />
+      </Form.Group>
+      <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
+        <Form.Label>Số điện thoại </Form.Label>
+        <Form.Control type="tel" placeholder="Số điện thoại" autoFocus value="0358810333" />
+      </Form.Group>
+      <Form.Group className={cx('mb-3" controlId="exampleForm.ControlInput1')}>
+        <Form.Label>Địa chỉ</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Địa chỉ"
+          autoFocus
+          value="205 Phan Văn Hân, P17, QBT, TPHCM"
+        />
+      </Form.Group>
+      <Button variant="secondary" onClick={handleClose}>
+        Hủy
+      </Button>
+      <Button variant="primary" onClick={handleClose}>
+        Lưu lại
+      </Button>
+    </Form>
     //   ) : (
     //     <></>
     //   )}
